@@ -1,0 +1,425 @@
+Frederic Marchand
+ID# 100817579
+Comp2003 Assignment 2
+
+Files submitted:
+a2 (executable)
+a2.asm
+io.mac
+io.o
+A2 Tests and README
+
+
+///////////README///////////////
+The assignment said to submit the executable and I did but if you want to recompile it copy these commands in the command line on one of the lambdas:
+nasm -f elf a2.asm
+ld -o a2 -melf_i386 a2.o io.o
+
+Also, the assignment did not ask for the program to restart so it doesnt and the prof said it was NOT one of the requirements in class.
+
+
+///////////TESTS///////////////
+These are my tests:
+
+-All the combinations of K,L,k,l,N are put together below and they all terminated without error
+-I start by outputting the input string for each to make sure it is correct
+-Then I print every byte that were unpacked from the input string to the 16 byte array to make sure that they are correct
+-Then bits 0 and 5 of the lights byte are modified according to the commands that were packed in the 2 byte array
+-The bits of the lights byte are outputted to verify if they were modified approprietly
+-The program writes a message to tell the user that it has terminated.
+
+
+
+Test case with input kl
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: kl
+
+This is the command you inputed: kl
+These are the values in the 16 byte array: 0110101101101100
+
+You have turned off the kitchen light
+You have turned off the living room light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with input lk
+***************************************************************************
+Enter your command: lk
+
+This is the command you inputed: lk
+These are the values in the 16 byte array: 0110110001101011
+
+You have turned off the living room light
+You have turned off the kitchen light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with KL
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: KL
+
+This is the command you inputed: KL
+These are the values in the 16 byte array: 0100101101001100
+
+You have turned on the kitchen light
+You have turned on the living room light
+Lights bytes bits: 00010001
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with LK
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: LK
+
+This is the command you inputed: LK
+These are the values in the 16 byte array: 0100110001001011
+
+You have turned on the living room light
+You have turned on the kitchen light
+Lights bytes bits: 00010001
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with Kl
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: Kl
+
+This is the command you inputed: Kl
+These are the values in the 16 byte array: 0100101101101100
+
+You have turned on the kitchen light
+You have turned off the living room light
+Lights bytes bits: 00000001
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with lK
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: lK
+
+This is the command you inputed: lK
+These are the values in the 16 byte array: 0110110001001011
+
+You have turned off the living room light
+You have turned on the kitchen light
+Lights bytes bits: 00000001
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with kL
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: kL
+
+This is the command you inputed: kL
+These are the values in the 16 byte array: 0110101101001100
+
+You have turned off the kitchen light
+You have turned on the living room light
+Lights bytes bits: 00010000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with Lk
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: Lk
+
+This is the command you inputed: Lk
+These are the values in the 16 byte array: 0100110001101011
+
+You have turned on the living room light
+You have turned off the kitchen light
+Lights bytes bits: 00010000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with kK
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: kK
+
+This is the command you inputed: kK
+These are the values in the 16 byte array: 0110101101001011
+
+You have turned off the kitchen light
+You have turned on the kitchen light
+Lights bytes bits: 00000001
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with Kk
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: Kk
+
+This is the command you inputed: Kk
+These are the values in the 16 byte array: 0100101101101011
+
+You have turned on the kitchen light
+You have turned off the kitchen light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with KK
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: KK
+
+This is the command you inputed: KK
+These are the values in the 16 byte array: 0100101101001011
+
+You have turned on the kitchen light
+You have turned on the kitchen light
+Lights bytes bits: 00000001
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with kk
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: kk
+
+This is the command you inputed: kk
+These are the values in the 16 byte array: 0110101101101011
+
+You have turned off the kitchen light
+You have turned off the kitchen light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with ll
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: ll
+
+This is the command you inputed: ll
+These are the values in the 16 byte array: 0110110001101100
+
+You have turned off the living room light
+You have turned off the living room light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with LL
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: LL
+
+This is the command you inputed: LL
+These are the values in the 16 byte array: 0100110001001100
+
+You have turned on the living room light
+You have turned on the living room light
+Lights bytes bits: 00010000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with lL
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: lL
+
+This is the command you inputed: lL
+These are the values in the 16 byte array: 0110110001001100
+
+You have turned off the living room light
+You have turned on the living room light
+Lights bytes bits: 00010000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with Ll
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: Ll
+
+This is the command you inputed: Ll
+These are the values in the 16 byte array: 0100110001101100
+
+You have turned on the living room light
+You have turned off the living room light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with KN
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: KN
+
+This is the command you inputed: KN
+These are the values in the 16 byte array: 0100101101001110
+
+You have turned on the kitchen light
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with NK
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: NK
+
+This is the command you inputed: NK
+These are the values in the 16 byte array: 0100111001001011
+
+You have turned on the kitchen light
+Lights bytes bits: 00000001
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with kN
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: kN
+
+This is the command you inputed: kN
+These are the values in the 16 byte array: 0110101101001110
+
+You have turned off the kitchen light
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with Nk
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: Nk
+
+This is the command you inputed: Nk
+These are the values in the 16 byte array: 0100111001101011
+
+You have turned off the kitchen light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with LN
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: LN
+
+This is the command you inputed: LN
+These are the values in the 16 byte array: 0100110001001110
+
+You have turned on the living room light
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with NL
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: NL
+
+This is the command you inputed: NL
+These are the values in the 16 byte array: 0100111001001100
+
+You have turned on the living room light
+Lights bytes bits: 00010000
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with lN
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: lN
+
+This is the command you inputed: lN
+These are the values in the 16 byte array: 0110110001001110
+
+You have turned off the living room light
+
+The program has terminated.
+***************************************************************************
+
+
+Test case with Nl
+***************************************************************************
+Lights Program has started: 
+
+Enter your command: Nl
+
+This is the command you inputed: Nl
+These are the values in the 16 byte array: 0100111001101100
+
+You have turned off the living room light
+Lights bytes bits: 00000000
+
+The program has terminated.
+***************************************************************************
+
